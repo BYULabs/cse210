@@ -42,5 +42,14 @@ class Program
             Console.WriteLine($"Your letter grade is an F.");
         }
         
+        if (grade >= 70)
+        {
+            Console.WriteLine("You passed!");
+        }
+        else
+        {
+            Console.WriteLine("Better luck next time!");
+        }
+        
     }
 }
