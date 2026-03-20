@@ -15,10 +15,10 @@ class Program
         var scripture2 = new Scripture(ref2, "Trust in the Lord with all your heart and lean not on your own understanding");
         scriptures.Add(scripture2);
         
-        foreach (var scripture in scriptures)
-        {
-            Console.WriteLine(scripture.GetDisplayText());
-            Console.WriteLine();
-        }
+        Random random = new Random();
+        int randomIndex = random.Next(scriptures.Count);
+        
+        Console.Clear();
+        Console.WriteLine(scriptures[randomIndex].GetDisplayText());
     }
 }
