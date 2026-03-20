@@ -17,8 +17,31 @@ class Program
         
         Random random = new Random();
         int randomIndex = random.Next(scriptures.Count);
+        Scripture scripture = scriptures[randomIndex];
         
-        Console.Clear();
-        Console.WriteLine(scriptures[randomIndex].GetDisplayText());
+        while (!scripture.IsCompletelyHidden())
+        {
+            Console.Clear();
+            Console.WriteLine(scripture.GetDisplayText());
+            Console.WriteLine();
+            Console.Write("Press Enter to hide a word, or type 'quit' to exit: ");
+            
+            string input = Console.ReadLine();
+            
+            if (input.ToLower() == "quit")
+            {
+                break;
+            }
+            
+            scripture.HideRandomWord();
+        }
+        
+        if (scripture.IsCompletelyHidden())
+        {
+            Console.Clear();
+            Console.WriteLine(scripture.GetDisplayText());
+            Console.WriteLine();
+            Console.WriteLine("Congratulations! You've hidden all the words!");
+        }
     }
 }

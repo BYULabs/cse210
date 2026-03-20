@@ -18,7 +18,9 @@ public class Scripture{
 
     public void HideRandomWord()
     {
-        
+        Random random = new Random();
+        int randomIndex = random.Next(_words.Count);
+        _words[randomIndex].Hide();
     }
 
     public string GetDisplayText()
