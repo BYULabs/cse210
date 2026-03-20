@@ -1,12 +1,13 @@
 public class Scripture{
 
     private Reference _reference;
-
+    private string _topic;
     private List<Word> _words;
 
-    public Scripture(Reference reference, string text)
+    public Scripture(Reference reference, string text, string topic = "")
     {
         _reference = reference;
+        _topic = topic;
         _words = new List<Word>();
         
         string[] wordTexts = text.Split(' ');
@@ -14,6 +15,11 @@ public class Scripture{
         {
             _words.Add(new Word(wordText));
         }
+    }
+    
+    public string GetTopic()
+    {
+        return _topic;
     }
 
     public void HideRandomWord()
