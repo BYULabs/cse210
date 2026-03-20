@@ -19,8 +19,31 @@ public class Scripture{
     public void HideRandomWord()
     {
         Random random = new Random();
-        int randomIndex = random.Next(_words.Count);
-        _words[randomIndex].Hide();
+        int randomIndex;
+        
+        // Find a random unhidden word
+        while (true)
+        {
+            randomIndex = random.Next(_words.Count);
+            if (!_words[randomIndex].IsHidden())
+            {
+                break;
+            }
+        }
+        
+        // Count how many consecutive unhidden words are available starting from randomIndex
+        int consecutiveCount = 0;
+        for (int i = randomIndex; i < _words.Count && !_words[i].IsHidden(); i++)
+        {
+            consecutiveCount++;
+        }
+        
+        // Hide up to 3 words (or however many are available)
+        int wordsToHide = Math.Min(3, consecutiveCount);
+        for (int i = 0; i < wordsToHide; i++)
+        {
+            _words[randomIndex + i].Hide();
+        }
     }
 
     public string GetDisplayText()
