@@ -1,12 +1,36 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Scripture Memorizer Program - Advanced Features Implementation
+/// 
+/// CORE REQUIREMENTS MET:
+/// - Store scriptures with both reference (book, chapter, verse) and text
+/// - Clear console and display complete scripture with reference
+/// - Prompt user to press Enter or type quit
+/// - Keep the program running in a loop
+/// 
+/// REQUIREMENTS EXCEEDED WITH ADDITIONAL FEATURES:
+/// 
+/// 1. SCRIPTURE LIBRARY (Not just a single scripture):
+///    - Program includes 6 different Book of Mormon scriptures in a list
+///    - Displays a random scripture each time the program runs
+///    - Provides variety to practice multiple passages
+/// 
+/// 2. STUDY TOPICS FOR CONTEXT:
+///    - Each scripture includes a topic/theme displayed above the text
+///    - Helps users understand the meaning and purpose of each passage
+///    - Improves comprehension while memorizing (not just rote memorization)
+///    - Example: "Topic: How Christ's Grace Turns Weaknesses into Strengths"
+/// </summary>
 class Program
 {
     static void Main(string[] args)
     {
+        // Initialize a list to store all available scriptures
         List<Scripture> scriptures = new List<Scripture>();
         
+        // Add scriptures to the list with their references, text, and topics for study
         var ref1 = new Reference("Ether", 12, 27);
         var scripture1 = new Scripture(ref1, "I will make weak things become strong unto them that have faith in me", "Topic: How Christ's Grace Turns Weaknesses into Strengths");
         scriptures.Add(scripture1);
@@ -31,29 +55,39 @@ class Program
         var scripture6 = new Scripture(ref6, "Adam fell that men might be and men are that they might have joy", "Topic: The Purpose of Mortality and Joy");
         scriptures.Add(scripture6);
         
+        // Select a random scripture from the list to practice
         Random random = new Random();
         int randomIndex = random.Next(scriptures.Count);
         Scripture scripture = scriptures[randomIndex];
         
+        // Game loop - continue hiding words until all are hidden or user quits
         while (!scripture.IsCompletelyHidden())
         {
+            // Clear the screen and display the scripture with its topic
             Console.Clear();
             Console.WriteLine(scripture.GetTopic());
             Console.WriteLine();
             Console.WriteLine(scripture.GetDisplayText());
             Console.WriteLine();
+            // Display progress to motivate user and show memorization advancement
+            Console.WriteLine(scripture.GetProgress());
+            Console.WriteLine();
             Console.Write("Press Enter to hide a word, or type 'quit' to exit: ");
             
+            // Get user input
             string input = Console.ReadLine();
             
+            // Check if user wants to quit
             if (input.ToLower() == "quit")
             {
                 break;
             }
             
+            // Hide 1-3 consecutive unhidden words
             scripture.HideRandomWord();
         }
         
+        // Display the completed scripture and congratulations message
         if (scripture.IsCompletelyHidden())
         {
             Console.Clear();
@@ -61,7 +95,10 @@ class Program
             Console.WriteLine();
             Console.WriteLine(scripture.GetDisplayText());
             Console.WriteLine();
-            Console.WriteLine("Congratulations! You've hidden all the words!");
+            // Show final progress (100% memorized)
+            Console.WriteLine(scripture.GetProgress());
+            Console.WriteLine();
+            Console.WriteLine("🎉 Congratulations! You've memorized the entire scripture! 🎉");
         }
     }
 }
