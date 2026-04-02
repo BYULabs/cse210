@@ -1,5 +1,6 @@
 class BreathingActivity : Activity
 {
+    private const int CycleSeconds = 4;
     public BreathingActivity()
         : base(
             "Breathing Activity",
@@ -10,8 +11,41 @@ class BreathingActivity : Activity
     public void Run()
     {
         DisplayStartingMessage();
+
+        int elapsedSeconds = 0;
+        bool breatheIn = true;
+
+        Console.Clear();
+        Console.WriteLine("Get ready...");
+        ShowSpinner(1000);
+        Console.Write("\b \b");
+
         Console.WriteLine();
-        Console.WriteLine("[Part 1] Breathing activity logic will be added next.");
+
+        while (elapsedSeconds < GetDuration())
+        {
+            int remainingSeconds = GetDuration() - elapsedSeconds;
+            int secondsToCountDown = Math.Min(CycleSeconds, remainingSeconds);
+
+            if (breatheIn && elapsedSeconds > 0)
+            {
+                Console.WriteLine();
+            }
+
+            Console.Write(breatheIn ? "Breathe in... " : "Now Breathe out... ");
+
+            for (int second = secondsToCountDown; second > 0; second--)
+            {
+                Console.Write(second);
+                Thread.Sleep(1000);
+                Console.Write("\b \b");
+            }
+
+            Console.WriteLine();
+            elapsedSeconds += secondsToCountDown;
+            breatheIn = !breatheIn;
+        }
+
         DisplayEndingMessage();
     }
 }
