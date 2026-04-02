@@ -3,6 +3,7 @@ class Activity
     private string _name;
     private string _description;
     private int _duration;
+    private const int SpinnerDelayMilliseconds = 120;
 
     public Activity(string name, string description)
     {
@@ -43,8 +44,26 @@ class Activity
     {
         Console.WriteLine();
         Console.WriteLine("Good job!");
+        ShowSpinner(2000);
         Console.WriteLine($"You have completed another {GetDuration()} seconds of the {_name}.");
-        Console.WriteLine("Press Enter to return to the menu.");
-        Console.ReadLine();
+        ShowSpinner(2500);
+        return;
+    }
+
+    protected void ShowSpinner(int totalMilliseconds)
+    {
+        string[] spinnerFrames = { "|", "/", "-", "\\" };
+        int elapsedMilliseconds = 0;
+        int frameIndex = 0;
+
+        while (elapsedMilliseconds < totalMilliseconds)
+        {
+            Console.Write(spinnerFrames[frameIndex]);
+            Thread.Sleep(SpinnerDelayMilliseconds);
+            Console.Write("\b");
+
+            elapsedMilliseconds += SpinnerDelayMilliseconds;
+            frameIndex = (frameIndex + 1) % spinnerFrames.Length;
+        }
     }
 }
