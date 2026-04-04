@@ -9,8 +9,6 @@ class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    private Random _random = new Random();
-
     public ListingActivity()
         : base(
             "Listing Activity",
@@ -26,7 +24,7 @@ class ListingActivity : Activity
         Console.WriteLine("Get ready...");
         ShowSpinner(1500);
 
-        string selectedPrompt = Prompts[_random.Next(Prompts.Length)];
+        string selectedPrompt = GetRandomItemWithoutRepeating("ListingPrompts", Prompts);
 
         Console.WriteLine();
         Console.WriteLine("List as many responses as you can to the following prompt:");
@@ -35,15 +33,7 @@ class ListingActivity : Activity
         Console.WriteLine();
         Console.Write("You may begin in: ");
 
-        for (int countdown = 5; countdown > 0; countdown--)
-        {
-            Console.Write(countdown);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-
-        Console.WriteLine();
-        Console.WriteLine();
+        ShowCountdown(5);
 
         int itemCount = 0;
         DateTime endTime = DateTime.Now.AddSeconds(GetDuration());

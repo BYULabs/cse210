@@ -1,5 +1,10 @@
 using System;
 
+// Creativity changes implemented:
+// - Breathing, Reflection and Listing use shared Activity helpers for countdown and item selection.
+// - Prompts/questions are randomized without repeating until all choices are used once.
+// - Non-repeating state is kept for the app session to improve variety.
+
 class Program
 {
     static void Main(string[] args)

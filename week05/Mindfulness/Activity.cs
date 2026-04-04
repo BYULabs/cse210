@@ -1,5 +1,7 @@
 class Activity
 {
+    private Random _random = new Random();
+    private Dictionary<string, List<int>> _unusedItemIndexesByKey = new Dictionary<string, List<int>>();
     private string _name;
     private string _description;
     private int _duration;
@@ -48,6 +50,41 @@ class Activity
         Console.WriteLine($"You have completed another {GetDuration()} seconds of the {_name}.");
         ShowSpinner(2500);
         return;
+    }
+
+    protected string GetRandomItemWithoutRepeating(string key, string[] items)
+    {
+        if (!_unusedItemIndexesByKey.TryGetValue(key, out List<int> unusedIndexes))
+        {
+            unusedIndexes = new List<int>();
+            _unusedItemIndexesByKey[key] = unusedIndexes;
+        }
+
+        if (unusedIndexes.Count == 0)
+        {
+            for (int index = 0; index < items.Length; index++)
+            {
+                unusedIndexes.Add(index);
+            }
+        }
+
+        int selectedIndexPosition = _random.Next(unusedIndexes.Count);
+        int selectedIndex = unusedIndexes[selectedIndexPosition];
+        unusedIndexes.RemoveAt(selectedIndexPosition);
+
+        return items[selectedIndex];
+    }
+
+    protected void ShowCountdown(int seconds)
+    {
+        for (int countdown = seconds; countdown > 0; countdown--)
+        {
+            Console.Write(countdown);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+
+        Console.WriteLine();
     }
 
     protected void ShowSpinner(int totalMilliseconds)

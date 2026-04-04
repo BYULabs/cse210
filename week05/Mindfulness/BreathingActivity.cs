@@ -34,12 +34,7 @@ class BreathingActivity : Activity
 
             Console.Write(breatheIn ? "Breathe in... " : "Now Breathe out... ");
 
-            for (int second = secondsToCountDown; second > 0; second--)
-            {
-                Console.Write(second);
-                Thread.Sleep(1000);
-                Console.Write("\b \b");
-            }
+            ShowCountdown(secondsToCountDown);
 
             Console.WriteLine();
             elapsedSeconds += secondsToCountDown;

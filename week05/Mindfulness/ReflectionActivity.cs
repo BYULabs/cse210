@@ -39,7 +39,7 @@ class ReflectionActivity : Activity
         Console.WriteLine("Get ready...");
         ShowSpinner(1500);
 
-        string selectedPrompt = _prompts[_random.Next(_prompts.Length)];
+        string selectedPrompt = GetRandomItemWithoutRepeating("ReflectionPrompts", _prompts);
 
         Console.WriteLine();
         Console.WriteLine("Consider the following prompt:");
@@ -49,30 +49,18 @@ class ReflectionActivity : Activity
         Console.WriteLine("When you have something in mind, press Enter to continue.");
         Console.ReadLine();
 
+        Console.Clear();
         Console.WriteLine("Now ponder on each of the following questions as they relate to this experience.");
         Console.WriteLine("You may begin in:");
-
-        for (int countdown = 5; countdown > 0; countdown--)
-        {
-            Console.Write(countdown);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
-
-        Console.WriteLine();
+        ShowCountdown(5);
 
         DateTime endTime = DateTime.Now.AddSeconds(GetDuration());
-        int questionIndex = _random.Next(_questions.Length);
-
-        Console.Clear();
 
         while (DateTime.Now < endTime)
         {
-            Console.Write($"> {_questions[questionIndex]} ");
-            ShowSpinner(10000);
+            Console.Write($"> {GetRandomItemWithoutRepeating("ReflectionQuestions", _questions)} ");
+            ShowSpinner(5000);
             Console.WriteLine();
-
-            questionIndex = (questionIndex + 1) % _questions.Length;
         }
 
         DisplayEndingMessage();
