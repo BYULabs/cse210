@@ -4,11 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
+        GoalManager goalManager = new GoalManager();
 
         while (true)
         {
             Console.Clear();
             Console.WriteLine();
+            goalManager.DisplayScore();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
             Console.WriteLine("  2. List Goals");
