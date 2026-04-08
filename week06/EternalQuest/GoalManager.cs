@@ -34,7 +34,7 @@ class GoalManager
         }
         if (goalType == 2)
         {
-            return;
+            _goals.Add(new EternalGoal(name, description, points));
         }
         if (goalType == 3)
         {
