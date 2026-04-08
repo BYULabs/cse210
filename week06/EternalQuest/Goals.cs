@@ -26,22 +26,22 @@ class Goal
         return _points;
     }
 
-    public int RecordEvent()
+    public virtual int RecordEvent()
     {
         return -1;
     }
 
-    public bool IsComplete()
+    public virtual bool IsComplete()
     {
         return true;
     }
 
-    public string GetListDisplay()
+    public virtual string GetListDisplay()
     {
         return "";
     }
 
-    public string GetSaveData()
+    public virtual string GetSaveData()
     {
         return "";
     }
