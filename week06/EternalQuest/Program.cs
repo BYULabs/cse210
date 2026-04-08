@@ -9,7 +9,6 @@ class Program
         while (true)
         {
             Console.Clear();
-            Console.WriteLine();
             goalManager.DisplayScore();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
@@ -25,7 +24,7 @@ class Program
 
             if (choice == "1")
             {
-                return;
+                goalManager.CreateGoal();
             }
             else if (choice == "2")
             {
