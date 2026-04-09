@@ -11,12 +11,12 @@ class EternalGoal : Goal
 
     public override bool IsComplete()
     {
-        return base.IsComplete();
+        return false;
     }
 
     public override string GetListDisplay()
     {
-        return base.GetListDisplay();
+        return $"[ ] {GetName()} ({GetDescription()})";
     }
 
     public override string GetSaveData()

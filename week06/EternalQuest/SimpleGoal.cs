@@ -14,12 +14,13 @@ class SimpleGoal : Goal
 
     public override bool IsComplete()
     {
-        return base.IsComplete();
+        return _isComplete;
     }
 
     public override string GetListDisplay()
     {
-        return base.GetListDisplay();
+        string status = _isComplete ? "[X]" : "[ ]";
+        return $"{status} {GetName()} ({GetDescription()})";
     }
 
     public override string GetSaveData()

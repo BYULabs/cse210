@@ -8,8 +8,9 @@ class Program
 
         while (true)
         {
-            Console.Clear();
+            Console.WriteLine();
             goalManager.DisplayScore();
+            Console.WriteLine();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
             Console.WriteLine("  2. List Goals");
@@ -28,7 +29,7 @@ class Program
             }
             else if (choice == "2")
             {
-                return;
+                goalManager.DisplayGoals();
             }
             else if (choice == "3")
             {

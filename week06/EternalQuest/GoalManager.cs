@@ -8,13 +8,27 @@ class GoalManager
         Console.WriteLine($"Current score: {_score}");
     }
 
+    public void DisplayGoals()
+    {
+        if (_goals.Count == 0)
+        {
+            Console.WriteLine("No goals have been created yet.");
+            return;
+        }
+
+        for (int goalIndex = 0; goalIndex < _goals.Count; goalIndex++)
+        {
+            Console.WriteLine($"{goalIndex + 1}. {_goals[goalIndex]. GetListDisplay()}");
+        }
+    }
+
     public void CreateGoal()
     {
-        Console.Clear();
         Console.WriteLine("The types of goals are:");
         Console.WriteLine("  1. Simple Goal");
         Console.WriteLine("  2. Eternal Goal");
         Console.WriteLine("  3. Checklist Goal");
+        Console.WriteLine();
         
         Console.Write("Which type of goal would you like to create? ");
         int goalType = int.Parse(Console.ReadLine());

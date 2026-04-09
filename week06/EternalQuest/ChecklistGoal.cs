@@ -18,12 +18,13 @@ class CheckListGoal : Goal
 
     public override bool IsComplete()
     {
-        return base.IsComplete();
+        return _amountCompleted >= _targetAmount;
     }
 
     public override string GetListDisplay()
     {
-        return base.GetListDisplay();
+        string status = IsComplete() ? "[X]" : "[ ]";
+        return $"{status} {GetName()} ({GetDescription()}) -- Completed {_amountCompleted}/{_targetAmount} times";
     }
 
     public override string GetSaveData()
