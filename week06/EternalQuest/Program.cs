@@ -5,6 +5,7 @@ class Program
     static void Main(string[] args)
     {
         GoalManager goalManager = new GoalManager();
+        string filename = "goals.txt";
 
         while (true)
         {
@@ -33,7 +34,7 @@ class Program
             }
             else if (choice == "3")
             {
-                return;
+                goalManager.SaveGoals(filename);
             }
             else if (choice == "4")
             {

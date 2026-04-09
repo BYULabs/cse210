@@ -65,4 +65,18 @@ class GoalManager
             Console.WriteLine("That is not a valid goal type.");
         }
     }
+
+    public void SaveGoals(string filename)
+    {
+        List<string> lines = new List<string>();
+        lines.Add(_score.ToString());
+
+        foreach (Goal goal in _goals)
+        {
+            lines.Add(goal.GetSaveData());
+        }
+
+        File.WriteAllLines(filename, lines);
+        Console.WriteLine($"Goals saved to {filename}.");
+    }
 }

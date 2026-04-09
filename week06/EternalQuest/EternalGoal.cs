@@ -21,6 +21,6 @@ class EternalGoal : Goal
 
     public override string GetSaveData()
     {
-        return base.GetSaveData();
+        return $"EternalGoal|{GetName()}|{GetDescription()}|{GetPoints()}";
     }
 }

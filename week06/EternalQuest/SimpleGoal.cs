@@ -25,7 +25,7 @@ class SimpleGoal : Goal
 
     public override string GetSaveData()
     {
-        return base.GetSaveData();
+        return $"SimpleGoal|{GetName()}|{GetDescription()}|{GetPoints()}|{_isComplete}";
     }
 
 }

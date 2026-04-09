@@ -29,6 +29,6 @@ class CheckListGoal : Goal
 
     public override string GetSaveData()
     {
-        return base.GetSaveData();
+        return $"ChecklistGoal|{GetName()}|{GetDescription()}|{GetPoints()}|{_amountCompleted}|{_targetAmount}|{_bonusPoints}";
     }
 }
