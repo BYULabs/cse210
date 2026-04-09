@@ -38,7 +38,7 @@ class Program
             }
             else if (choice == "4")
             {
-                return;
+                goalManager.LoadGoals(filename);
             }
             else if (choice == "5")
             {

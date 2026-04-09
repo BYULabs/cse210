@@ -79,4 +79,52 @@ class GoalManager
         File.WriteAllLines(filename, lines);
         Console.WriteLine($"Goals saved to {filename}.");
     }
+
+    public void LoadGoals(string filename)
+    {
+        if (!File.Exists(filename))
+        {
+            Console.WriteLine($"Could not find {filename}.");
+            return;
+        }
+
+        string[] lines = File.ReadAllLines(filename);
+        _goals.Clear();
+        _score = 0;
+
+        if (lines.Length == 0)
+        {
+            Console.WriteLine("That file does not contain any goals.");
+            return;
+        }
+
+        _score = int.Parse(lines[0]);
+
+        for (int lineIndex = 1; lineIndex < lines.Length; lineIndex++)
+        {
+            string[] parts = lines[lineIndex].Split('|');
+
+            if (parts.Length == 0)
+            {
+                continue;
+            }
+
+            string goalType = parts[0];
+
+            if (goalType == "SimpleGoal" && parts.Length >= 5)
+            {
+                _goals.Add(new SimpleGoal(parts[1], parts[2], int.Parse(parts[3]), bool.Parse(parts[4])));
+            }
+            else if (goalType == "EternalGoal" && parts.Length >= 4)
+            {
+                _goals.Add(new EternalGoal(parts[1], parts[2], int.Parse(parts[3])));
+            }
+            else if (goalType == "ChecklistGoal" && parts.Length >= 7)
+            {
+                _goals.Add(new CheckListGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
+            }
+        }
+
+        Console.WriteLine($"Goals loaded from {filename}.");
+    }
 }
