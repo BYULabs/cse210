@@ -1,5 +1,3 @@
-using System;
-
 class Program
 {
     static void Main(string[] args)
@@ -44,7 +42,7 @@ class Program
             {
                 goalManager.RecordEvent();
             }
-            else if (choice =="6")
+            else if (choice == "6")
             {
                 break;
             }
@@ -53,6 +51,5 @@ class Program
                 Console.WriteLine("That is not a valid choice.");
             }
         }
-
     }
 }
