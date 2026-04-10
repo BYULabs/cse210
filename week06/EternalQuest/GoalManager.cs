@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
 class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
@@ -18,7 +22,7 @@ class GoalManager
 
         for (int goalIndex = 0; goalIndex < _goals.Count; goalIndex++)
         {
-            Console.WriteLine($"{goalIndex + 1}. {_goals[goalIndex]. GetListDisplay()}");
+            Console.WriteLine($"{goalIndex + 1}. {_goals[goalIndex].GetListDisplay()}");
         }
     }
 
@@ -28,10 +32,9 @@ class GoalManager
         Console.WriteLine("  1. Simple Goal");
         Console.WriteLine("  2. Eternal Goal");
         Console.WriteLine("  3. Checklist Goal");
-        Console.WriteLine();
-        
         Console.Write("Which type of goal would you like to create? ");
-        int goalType = int.Parse(Console.ReadLine());
+
+        int goalType = ReadPositiveInt();
 
         Console.Write("What is the name of your goal? ");
         string name = Console.ReadLine();
@@ -40,7 +43,7 @@ class GoalManager
         string description = Console.ReadLine();
 
         Console.Write("What is the amount of points associated with this goal? ");
-        int points = int.Parse(Console.ReadLine());
+        int points = ReadPositiveInt();
 
         if (goalType == 1)
         {
@@ -53,12 +56,12 @@ class GoalManager
         else if (goalType == 3)
         {
             Console.Write("How many times does this goal need to be accomplished for a bonus? ");
-            int targetAmount = int.Parse(Console.ReadLine());
+            int targetAmount = ReadPositiveInt();
 
             Console.Write("What is the bonus for accomplishing it that many times? ");
-            int bonusPoints = int.Parse(Console.ReadLine());
+            int bonusPoints = ReadPositiveInt();
 
-            _goals.Add(new CheckListGoal(name, description, points, 0, targetAmount, bonusPoints));
+            _goals.Add(new ChecklistGoal(name, description, points, 0, targetAmount, bonusPoints));
         }
         else
         {
@@ -76,7 +79,7 @@ class GoalManager
 
         DisplayGoals();
         Console.Write("Which goal did you accomplish? ");
-        int goalNumber = int.Parse(Console.ReadLine());
+        int goalNumber = ReadPositiveInt();
 
         if (goalNumber < 1 || goalNumber > _goals.Count)
         {
@@ -152,10 +155,21 @@ class GoalManager
             }
             else if (goalType == "ChecklistGoal" && parts.Length >= 7)
             {
-                _goals.Add(new CheckListGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
+                _goals.Add(new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), int.Parse(parts[6])));
             }
         }
 
         Console.WriteLine($"Goals loaded from {filename}.");
+    }
+
+    private int ReadPositiveInt()
+    {
+        int value;
+        while (!int.TryParse(Console.ReadLine(), out value) || value < 0)
+        {
+            Console.Write("Please enter a whole number zero or greater: ");
+        }
+
+        return value;
     }
 }
