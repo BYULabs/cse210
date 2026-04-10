@@ -1,10 +1,11 @@
-class CheckListGoal : Goal
+class ChecklistGoal : Goal
 {
     private int _amountCompleted;
     private int _targetAmount;
     private int _bonusPoints;
 
-    public CheckListGoal(string name, string description, int points, int amountCompleted, int targetAmount, int bonusPoints) : base(name, description, points)
+    public ChecklistGoal(string name, string description, int points, int amountCompleted, int targetAmount, int bonusPoints)
+        : base(name, description, points)
     {
         _amountCompleted = amountCompleted;
         _targetAmount = targetAmount;
