@@ -1,4 +1,4 @@
-class Goal
+abstract class Goal
 {
     private string _name;
     private string _description;
@@ -26,24 +26,12 @@ class Goal
         return _points;
     }
 
-    public virtual int RecordEvent()
-    {
-        return -1;
-    }
+    public abstract int RecordEvent();
 
-    public virtual bool IsComplete()
-    {
-        return true;
-    }
+    public abstract bool IsComplete();
 
-    public virtual string GetListDisplay()
-    {
-        return "";
-    }
+    public abstract string GetListDisplay();
 
-    public virtual string GetSaveData()
-    {
-        return "";
-    }
+    public abstract string GetSaveData();
     
 }
