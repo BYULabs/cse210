@@ -13,7 +13,20 @@ class CheckListGoal : Goal
 
     public override int RecordEvent()
     {
-        return base.RecordEvent();
+        if (IsComplete())
+        {
+            return 0;
+        }
+
+        _amountCompleted++;
+        int pointsEarned = GetPoints();
+
+        if (IsComplete())
+        {
+            pointsEarned += _bonusPoints;
+        }
+
+        return pointsEarned;
     }
 
     public override bool IsComplete()

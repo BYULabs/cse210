@@ -9,7 +9,13 @@ class SimpleGoal : Goal
 
     public override int RecordEvent()
     {
-        return base.RecordEvent();
+        if (_isComplete)
+        {
+            return 0;
+        }
+
+        _isComplete = true;
+        return GetPoints();
     }
 
     public override bool IsComplete()

@@ -66,6 +66,37 @@ class GoalManager
         }
     }
 
+    public void RecordEvent()
+    {
+        if (_goals.Count == 0)
+        {
+            Console.WriteLine("No goals are available to record.");
+            return;
+        }
+
+        DisplayGoals();
+        Console.Write("Which goal did you accomplish? ");
+        int goalNumber = int.Parse(Console.ReadLine());
+
+        if (goalNumber < 1 || goalNumber > _goals.Count)
+        {
+            Console.WriteLine("That is not a valid goal number.");
+            return;
+        }
+
+        Goal goal = _goals[goalNumber - 1];
+        int pointsEarned = goal.RecordEvent();
+
+        if (pointsEarned == 0)
+        {
+            Console.WriteLine("That goal was already completed.");
+            return;
+        }
+
+        _score += pointsEarned;
+        Console.WriteLine($"You earned {pointsEarned} points.");
+    }
+
     public void SaveGoals(string filename)
     {
         List<string> lines = new List<string>();

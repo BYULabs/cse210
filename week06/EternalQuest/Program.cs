@@ -42,7 +42,7 @@ class Program
             }
             else if (choice == "5")
             {
-                return;
+                goalManager.RecordEvent();
             }
             else if (choice =="6")
             {
