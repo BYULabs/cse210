@@ -36,33 +36,33 @@ Entry-level exercises covering C# fundamentals:
 - **Exercise5** - Arrays and collections
 
 ### Week 02 - Object-Oriented Programming Fundamentals
-Introduction to OOP concepts:
-- **Journal** - Create a simple journal application with entries and persistence
-- **Resumes** - Build a resume management system showcasing encapsulation
+Introduction to OOP concepts with encapsulation and data organization:
+- **Journal** - Simple journal application with `Entry` and `Journal` classes; supports adding entries and prompts
+- **Resumes** - Resume management system showcasing encapsulation with `Resume` and `Job` classes
 
 ### Week 03 - Object-Oriented Design
 Deeper dive into class design and relationships:
-- **Fractions** - Implement a Fraction class with mathematical operations
-- **ScriptureMemorizer** - Scripture memorization tool with text processing
+- **Fractions** - `Fractions` class implementing mathematical operations and fraction manipulation
+- **ScriptureMemorizer** - Scripture memorization tool with `Scripture`, `Reference`, and `Word` classes for text processing
 
 ### Week 04 - Inheritance and Polymorphism
 Working with inheritance hierarchies:
-- **YouTubeVideos** - Video management system with categorization
-- **OnlineOrdering** - E-commerce ordering system with products and orders
+- **YouTubeVideos** - Video management system with `Video` and `Comment` classes for media organization
+- **OnlineOrdering** - E-commerce ordering system with `Product`, `Customer`, `Order`, and `Address` classes
 
 ### Week 05 - Abstraction and Interfaces
 Designing with abstract classes and interfaces:
-- **Homework** - Homework tracking and management application
-- **Mindfulness** - Mindfulness activities tracker with different activity types
+- **Homework** - Abstract `Assignment` class with `MathAssignment` and `WritingAssignment` subclasses
+- **Mindfulness** - Abstract `Activity` class with `BreathingActivity`, `ReflectionActivity`, and `ListeningActivity` implementations for guided mindfulness exercises
 
 ### Week 06 - Advanced OOP Concepts
 Complex inheritance and polymorphic behaviors:
-- **Shapes** - Geometric shape hierarchy with area and perimeter calculations
-- **EternalQuest** - Goal tracking system with different goal types and rewards
+- **Shapes** - Abstract `Shape` class with `Circle`, `Rectangle`, and `Square` subclasses for geometric calculations
+- **EternalQuest** - Goal tracking system with `SimpleGoal`, `EternalGoal`, and `ChecklistGoal` classes; persists data to `goals.txt` file
 
 ### Week 07 - Advanced Topics
 Capstone projects and complex systems:
-- **ExerciseTracking** - Exercise logging and statistics tracking application
+- **ExerciseTracking** - Abstract `Activity` class with `RunningActivity`, `CyclingActivity`, and `SwimmingActivity` for exercise logging and statistics
 
 ## Prerequisites
 
@@ -109,27 +109,66 @@ The following tasks are available in VS Code:
 
 Throughout this course, students will learn:
 
-- **Object-Oriented Programming**: Classes, objects, inheritance, polymorphism
+- **Object-Oriented Programming**: Classes, objects, inheritance, polymorphism, abstraction
 - **SOLID Principles**: Single responsibility, Open/closed, Liskov substitution, Interface segregation, Dependency inversion
 - **Design Patterns**: Implementing common design patterns in C#
 - **Data Structures**: Working with collections and managing data
 - **Encapsulation**: Information hiding and access modifiers
+- **Inheritance and Polymorphism**: Building class hierarchies and leveraging polymorphic behavior
+- **Abstract Classes and Interfaces**: Defining contracts and abstract behaviors
+- **File I/O**: Persisting data to disk and reading from files
 - **Real-world Applications**: Building practical programs with user interaction and data persistence
+
+## Class Hierarchies Overview
+
+### Abstract Base Classes Used
+- **Activity** (week05/Mindfulness, week07/ExerciseTracking) - Base class for different types of activities
+- **Assignment** (week05/Homework) - Base class for different assignment types
+- **Shape** (week06/Shapes) - Base class for geometric shapes
+- **Goals** (week06/EternalQuest) - Base class for different goal types
+
+### Key Design Patterns
+- **Inheritance**: Used extensively across all weeks for code reuse and polymorphism
+- **Encapsulation**: Private fields and public methods for data protection
+- **Data Persistence**: File-based storage in EternalQuest (goals.txt)
 
 ## Development Workflow
 
 1. Navigate to the specific project folder
 2. Open `Program.cs` to view and modify the main entry point
-3. Build the project using `dotnet build`
-4. Run the project using `dotnet run`
-5. Iterate on the implementation based on requirements
+3. Review the supporting classes to understand the architecture
+4. Build the project using `dotnet build`
+5. Run the project using `dotnet run`
+6. Iterate on the implementation based on requirements
+
+## Project Execution
+
+### Running Individual Projects in VS Code
+Use the built-in tasks (Terminal → Run Task) to build projects, or run directly:
+```bash
+cd week06/Shapes
+dotnet run
+```
+
+### Running from Solution
+Open `cse210-ww-student-template.sln` in Visual Studio to manage and run all projects from one interface.
 
 ## Notes
 
-- Each project is a standalone console application
+- Each project is a standalone console application with its own project file
 - Projects demonstrate incremental complexity as you progress through the course
-- Focus on understanding OOP principles and design patterns
-- Follow best practices for code organization and clarity
+- Pay attention to how abstract classes and inheritance are implemented across different projects
+- Many projects feature user interaction through the console
+- Some projects (like EternalQuest) persist data to files for later retrieval
+- Focus on understanding OOP principles and design patterns over pure functionality
+
+## Repository Statistics
+
+- **7 weeks** of progressive coursework
+- **14 main projects** (2 per week, except week 7)
+- **5 week01 exercises** for foundational skills
+- **1 sandbox project** for experimentation
+- Focus on **C# console applications**
 
 ## License
 
@@ -137,4 +176,4 @@ This repository is for educational purposes as part of the CSE210 course.
 
 ---
 
-**Last Updated**: February 2026
+**Last Updated**: April 2026
